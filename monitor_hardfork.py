@@ -12,7 +12,7 @@ while True:
     try:
         hardfork_timestamp = int(input("Enter the UNIX timestamp for HardFork: "))
     except ValueError:
-        print("Please, enter a valid UNIX timestamp. For example: ")
+        print("Please, enter a valid UNIX timestamp. For example: 1559708603")
         continue
 
     if hardfork_timestamp <= time.time():
