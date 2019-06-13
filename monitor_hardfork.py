@@ -20,7 +20,6 @@ logging.basicConfig(
 
 TIME_NOW_MS = int(round(time.time() * 1000))
 GET_TO_YESTERDAY = 43200000  # 12 hours
-GET_DAY_BLOCKS_URL = get_blocks_url(TIME_NOW_MS)
 WS_SUBSCRIBE_URL = "wss://ws.blockchain.info/inv"
 BLOCKS_FOR_MTP = 11
 
@@ -42,7 +41,7 @@ while True:
 
 # first get 11 latest blocks and check their median time not to miss anything
 # the blocks are sorted from the newest to the oldest
-r = requests.get(GET_DAY_BLOCKS_URL)
+r = requests.get(get_blocks_url(TIME_NOW_MS))
 blocks_times = collections.deque((block['time'] for block in r.json()['blocks'][:BLOCKS_FOR_MTP]), maxlen=BLOCKS_FOR_MTP)
 
 # if you turn your program early in the morning, there won't be 11 blocks, so get the latest from yesterday
